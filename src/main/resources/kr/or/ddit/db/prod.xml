@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="prodSQL">
+	
+	<select id="selectUserForPage" resultType="kr.or.ddit.prod.vo.ProdVO" parameterType="kr.or.ddit.util.model.PageVo">
+		select * from
+		(select rownum rnum, a.*
+		from 
+		(select p.prod_id prodId, p.prod_name prodName, l.lprod_nm lprodName, to_char(prod_insdate, 'yyyy/mm/dd') prodDate, b.buyer_name buyerName, b.buyer_mail buyerEmail
+		from prod p, lprod l, buyer b
+		where p.prod_lgu = l.lprod_gu
+		and p.prod_buyer = b.buyer_id
+		order by prodId asc
+		)a)
+		where rnum between #{page}*#{pageSize}-(#{pageSize}-1) and #{page}*#{pageSize}
+	</select>
+	
+	<select id="selectUserAll" resultType="kr.or.ddit.prod.vo.ProdVO">
+		select * from
+		(select rownum rnum, a.*
+		from 
+		(select p.prod_id prodId, p.prod_name prodName, l.lprod_nm lprodName, to_char(prod_insdate, 'yyyy/mm/dd') prodDate, b.buyer_name buyerName, b.buyer_mail buyerEmail
+		from prod p, lprod l, buyer b
+		where p.prod_lgu = l.lprod_gu
+		and p.prod_buyer = b.buyer_id
+		order by prodId asc
+		)a)
+	</select>
+</mapper>
