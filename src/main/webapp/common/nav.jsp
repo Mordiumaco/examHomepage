@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -23,7 +25,7 @@
 								<c:when test="${userVo.right == 1}">
 								</c:when>
 								<c:when test="${userVo.right == 3}">
-									<li><a href="#">${board.boardName}</a></li>
+									<li><a href="boardPageList?boardCode=${board.boardCode}&pageNumber=1">${board.boardName}</a></li>
 								</c:when>
 								<c:otherwise>
 								</c:otherwise>
@@ -32,6 +34,7 @@
 					</c:when>
 					<c:otherwise></c:otherwise>
 				</c:choose>
+				<li><a href="boardMaker.jsp">진짜 게시판 생성</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">

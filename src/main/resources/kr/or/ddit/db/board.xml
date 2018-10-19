@@ -8,4 +8,8 @@
  	 select * from board
   </select>
   
+  <select id="getBoardName" resultType="String" parameterType="Integer">
+  	select boardName from board where boardCode = #{boardCode}
+  </select>
+  
 </mapper>

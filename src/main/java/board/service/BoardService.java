@@ -35,5 +35,16 @@ public class BoardService implements IBoardService{
 		return dao.selectBoardList();
 	}
 	
-	
+	/**
+	* Method : getBoardName
+	* 작성자 : pc20
+	* 변경이력 :
+	* @param boardCode
+	* @return
+	* Method 설명 : 게시판 이름 가져오기
+	*/
+	@Override
+	public String getBoardName(Integer boardCode){
+		return dao.getBoardName(boardCode);
+	}
 }

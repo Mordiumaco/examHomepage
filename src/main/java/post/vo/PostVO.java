@@ -11,7 +11,23 @@ public class PostVO {
 	private String boardCode;
 	private String postRefer;
 	private Integer postAvailable;
+	private String title;
+	private Integer rnum;
 	
+	
+	
+	public Integer getRnum() {
+		return rnum;
+	}
+	public void setRnum(Integer rnum) {
+		this.rnum = rnum;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public Integer getPostCode() {
 		return postCode;
 	}

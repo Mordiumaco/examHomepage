@@ -33,5 +33,15 @@ public class BoardTest {
 		
 		assertEquals(3, boardList.size());
 	}
+	
+	@Test
+	public void getBoardNameTest() {
+		
+		Integer boardCode = 1;
+		String boardName = boardService.getBoardName(boardCode);
+		
+		
+		assertEquals("자유 게시판", boardName);
+	}
 
 }

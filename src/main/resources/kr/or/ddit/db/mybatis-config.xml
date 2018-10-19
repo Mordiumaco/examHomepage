@@ -8,6 +8,7 @@
  <typeAliases>
  	<typeAlias type="login.vo.UserVO" alias="userVo"/>
  	<typeAlias type="board.vo.BoardVO" alias="boardVo"/>
+ 	<typeAlias type="post.vo.PostVO" alias="postVo"/>
  </typeAliases>	
 	
   <environments default="development">
@@ -32,5 +33,6 @@
   	<mapper resource="kr/or/ddit/db/temp.xml"/>
   	<mapper resource="kr/or/ddit/db/user.xml"/>
   	<mapper resource="kr/or/ddit/db/board.xml"/>
+  	<mapper resource="kr/or/ddit/db/post.xml"/>
   </mappers>
 </configuration>

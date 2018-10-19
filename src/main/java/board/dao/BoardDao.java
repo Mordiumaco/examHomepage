@@ -44,5 +44,28 @@ public class BoardDao implements IBoardDao{
 		return null;
 	}
 	
+	/**
+	* Method : getBoardName
+	* 작성자 : pc20
+	* 변경이력 :
+	* @param boardCode
+	* @return
+	* Method 설명 : 게시판 이름 가져오기
+	*/
+	@Override
+	public String getBoardName(Integer boardCode){
+		
+		SqlSessionFactory factory = SQLFactoryBuilder.getSqlSessionFactory();
+		
+		SqlSession session = factory.openSession();
+		
+		String boardName = session.selectOne("boardSQL.getBoardName", boardCode);
+		
+		if(boardName != null){
+			return boardName;
+		}
+		
+		return null;
+	}
 	
 }

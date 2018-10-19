@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- <div class="col-sm-3 col-md-2 sidebar">
+
 	<ul class="nav nav-sidebar">
 		<li class="active"><a href="/main.jsp">Main <span
 				class="sr-only">(current)</span></a></li>
@@ -15,8 +16,8 @@
 					1. jspuser 전체정보를 조회 : userService.selectUserAll();
 					2. 사용자 정보를 화면에 출력할 jsp : userAllList.jsp
 					
-				
 	</ul>
+	
 </div>
  -->
   <div class="container-fluid">

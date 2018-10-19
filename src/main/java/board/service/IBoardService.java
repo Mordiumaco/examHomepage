@@ -15,4 +15,14 @@ public interface IBoardService {
 	*/
 	public List<BoardVO> selectBoardList();
 	
-}
+	
+	/**
+	* Method : getBoardName
+	* 작성자 : pc20
+	* 변경이력 :
+	* @param boardCode
+	* @return
+	* Method 설명 : 게시판 이름 가져오기
+	*/
+	public String getBoardName(Integer boardCode);
+}	

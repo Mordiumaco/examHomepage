@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="postSQL">
+	
+  <select id="nowPostNumber" resultType="Integer">
+ 	 select max(postcode) from post
+  </select>
+  
+  <update id="inquiryUp" parameterType="String">
+  	update post set postinquiry = postinquiry+1 where postcode = #{postCode}
+  </update>
+  
+  <select id="selectPostByPage" resultType="postVo">
+  	select * from(
+	select rownum rnum, a.* from (
+	select lpad(' ',(level-1)*4,'>')||postname as title ,post.*
+	from post
+	start with postrefer is null
+	connect by prior postcode = postrefer 
+	order siblings by postrefer asc ,postcode desc
+	)a
+	where boardcode = #{boardCode} and postavailable = 1
+	)
+	where rnum between #{pageNumber}*#{pageSize}-(#{pageSize}-1) and #{pageNumber}*#{pageSize}
+	
+  </select>
+  
+</mapper>
