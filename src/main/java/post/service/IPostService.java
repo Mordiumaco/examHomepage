@@ -37,4 +37,25 @@ public interface IPostService {
 	*/
 	public List<PostVO> selectPostByPage(String pageNumber, String boardCode);
 	
+	/**
+	* Method : selectPostByPage
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 코드를 가지고 게시물 불러오기
+	*/
+	public PostVO selectPostByPostCode(String postCode);
+	
+	
+	/**
+	* 
+	* Method : insertPost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 객체로 정보 넣어주기
+	* 
+	*/
+	public int insertPost(PostVO postVo);
+	
 }

@@ -41,6 +41,8 @@ public class BoardS extends HttpServlet {
 
 		String boardCode = request.getParameter("boardCode");
 		String pageNumber = request.getParameter("pageNumber");
+		String postRefer = request.getParameter("postRefer");
+		
 		//게시물에 대한 서비스 호출
 		IPostService postService = PostService.getInstance();
 		List<PostVO> postList = postService.selectPostByPage(pageNumber, boardCode);
@@ -64,16 +66,20 @@ public class BoardS extends HttpServlet {
 		//게시판 이름 받아오기
 		request.setAttribute("boardName", boardName);
 		
+		//글쓰기에 필요한 보더코드
+		request.setAttribute("boardCode", boardCode);
+		request.setAttribute("postRefer", postRefer);
+		
 		//사용자 상세 화면으로 위임 
 		RequestDispatcher rd = request.getRequestDispatcher("board.jsp");
 		rd.forward(request, response);
 	}
 	
 	private void boardDetail(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+		HttpServletResponse response) throws ServletException, IOException {
 		//게시물 코드가 파라미터로 넘어옴 
 		String postCode = request.getParameter("postCode");
 		
-		
 	}
+	
 }

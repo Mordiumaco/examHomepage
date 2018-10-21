@@ -39,4 +39,24 @@ public interface IPostDao {
 	*/
 	public List<PostVO> selectPostByPage(PageVO pageVo);
 	
+	/**
+	* Method : selectPostByPage
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 코드를 가지고 게시물 불러오기
+	*/
+	public PostVO selectPostByPostCode(String postCode);
+	
+	
+	/**
+	* Method : insertPost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 객체로 정보 넣어주기
+	* 
+	*/
+	public int insertPost(PostVO postVo);
+	
 }

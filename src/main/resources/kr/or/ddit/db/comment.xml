@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commentSQL">
+	
+  <select id="selectPostCommentByPostCode" resultType="commentVo" parameterType="String" >
+ 	 select * from(
+	select rownum rnum, a.* from (
+	select lpad(' ',(level-1)*4,'>')||commentcon as title ,postcomment.*
+	from postcomment
+	start with commentrefer is null
+	connect by prior commentcode = commentrefer 
+	order siblings by commentrefer asc ,commentcode desc
+	)a
+	where postcode = #{postCode} and commentavailable = 1
+	)
+  </select>
+  
+  <select id="nowPostCommentNumber" resultType="Integer">
+ 	 select max(commentcode) from postcomment
+  </select>
+  
+  <insert id="insertPostComment" parameterType="commentVo">
+  	insert into postcomment (commentcode, userid, commentcon ,commentdate, postcode, commentrefer, commentavailable) 
+  	values (#{commentCode}, #{userId}, #{commentCon}, sysdate, #{postCode}, null, 1)
+  </insert>
+</mapper>

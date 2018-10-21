@@ -9,7 +9,15 @@ public class CommentVO {
 	private Integer postCode;
 	private Integer commentRefer;
 	private Integer commentAvailable;
+	private String title;
 	
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public Integer getCommentCode() {
 		return commentCode;
 	}

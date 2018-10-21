@@ -68,5 +68,32 @@ public class PostService implements IPostService{
 		return dao.selectPostByPage(pageVo);
 	}
 	
+	/**
+	* Method : selectPostByPage
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 코드를 가지고 게시물 불러오기
+	*/
+	@Override
+	public PostVO selectPostByPostCode(String postCode){
+		return dao.selectPostByPostCode(postCode);
+	}
 	
+	
+	/**
+	* 
+	* Method : insertPost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 객체로 정보 넣어주기
+	* 
+	*/
+	public int insertPost(PostVO postVo){
+		int postCode = service.nowPostNumber()+1;
+		postVo.setPostCode(postCode);
+		
+		return dao.insertPost(postVo);
+	}
 }

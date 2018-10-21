@@ -24,7 +24,15 @@
 	where boardcode = #{boardCode} and postavailable = 1
 	)
 	where rnum between #{pageNumber}*#{pageSize}-(#{pageSize}-1) and #{pageNumber}*#{pageSize}
-	
   </select>
+  
+  <select id="selectPostByPostCode" resultType="postVo" parameterType="String">
+  	select * from post where postCode = #{postCode}
+  </select>
+  
+  <insert id="insertPost" parameterType="postVo">
+  	insert into post (postcode, userid, postname, postcon, postdate, postinquiry, boardcode, postrefer, postavailable)
+  	values(#{postCode},#{userId},#{postName},#{postCon},sysdate,0,#{boardCode},#{postRefer},1)
+  </insert>
   
 </mapper>

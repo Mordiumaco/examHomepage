@@ -30,9 +30,10 @@ public class LoginTest {
 		
 		//service.selectUserByIdAndPassword(, password)
 		
-		String encrypt_number =  KISA_SHA256.encrypt("test");
+		String encrypt_number =  KISA_SHA256.encrypt("choi");
 		System.out.println(encrypt_number);
-		UserVO userVo = loginService.selectUserByIdAndPassword("test", encrypt_number);
+		UserVO userVo = loginService.selectUserByIdAndPassword("choi", encrypt_number);
+		
 		assertEquals(encrypt_number, userVo.getPassword());
 	}
 	

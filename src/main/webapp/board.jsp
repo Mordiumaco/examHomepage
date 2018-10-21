@@ -17,7 +17,7 @@
 			var postCode = $(this).children()[0].innerText;
 			var userId = $(this).children()[2].innerText;
 			
-			location.href='/boardDetail?postCode='+postCode;
+			location.href='/postDetail?postCode='+postCode;
 		});
 		
 		/* var ev = "click";
@@ -74,6 +74,29 @@
               </tbody>
             </table>
           </div>
+	          <div class="text-center">
+				<ul class="pagination">
+					<li>
+				      <a href="/userPageList?page=1" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+				    <li><a href="/userPageList?page=1"><</a></li>
+					<li><a href="/userPageList?page=1">1</a></li>
+					<li><a href="/userPageList?page=2">2</a></li>
+					<li><a href="/userPageList?page=3">3</a></li>
+					<li><a href="/userPageList?page=4">4</a></li>
+					<li><a href="/userPageList?page=5">5</a></li>
+					<li><a href="/userPageList?page=5">></a></li>
+					<li>
+				      <a href="/userPageList?page=?" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				</ul>
+			</div>
+          <a href="/postSend?boardCode=${boardCode}&postRefer=${postRefer}" class="btn btn-primary pull-right">글쓰기</a>
         </div>
+        
 </body>
 </html>

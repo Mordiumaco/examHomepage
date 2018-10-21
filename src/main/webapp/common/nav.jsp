@@ -23,6 +23,7 @@
 						<c:forEach items="${boardList}" var="board">
 							<c:choose>
 								<c:when test="${userVo.right == 1}">
+									<li><a href="boardPageList?boardCode=${board.boardCode}&pageNumber=1">${board.boardName}</a></li>
 								</c:when>
 								<c:when test="${userVo.right == 3}">
 									<li><a href="boardPageList?boardCode=${board.boardCode}&pageNumber=1">${board.boardName}</a></li>
@@ -34,7 +35,9 @@
 					</c:when>
 					<c:otherwise></c:otherwise>
 				</c:choose>
-				<li><a href="boardMaker.jsp">진짜 게시판 생성</a></li>
+				<c:if test="${userVo.right == 3}">
+					<li><a href="boardMaker.jsp">진짜 게시판 생성</a></li>
+				</c:if>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">

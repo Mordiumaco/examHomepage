@@ -24,7 +24,6 @@ public class PostDao implements IPostDao{
 		return dao;
 	}
 	
-	
 	/**
 	* Method : nowPostNumber
 	* 작성자 : pc20
@@ -92,6 +91,65 @@ public class PostDao implements IPostDao{
 		}
 		
 		return null;
+	}
+	
+	
+	/**
+	* Method : selectPostByPage
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 코드를 가지고 게시물 불러오기
+	*/
+	@Override
+	public PostVO selectPostByPostCode(String postCode) {
+		
+		SqlSessionFactory factory = SQLFactoryBuilder.getSqlSessionFactory();
+		
+		SqlSession session = factory.openSession();
+		
+		try{
+			PostVO postVo= session.selectOne("postSQL.selectPostByPostCode", postCode);
+			
+			return postVo;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
+	/**
+	* 
+	* Method : insertPost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 객체로 정보 넣어주기
+	* 
+	*/
+	
+	@Override
+	public int insertPost(PostVO postVo){
+		
+		SqlSessionFactory factory = SQLFactoryBuilder.getSqlSessionFactory();
+		
+		SqlSession session = factory.openSession();
+		
+		try{
+			System.out.println(postVo);
+			int result = session.insert("postSQL.insertPost", postVo);
+			
+			session.commit();
+			session.close();
+			return result;
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return -1;
 	}
 	
 	
