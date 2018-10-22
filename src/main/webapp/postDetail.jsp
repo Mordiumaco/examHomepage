@@ -34,9 +34,9 @@
 					          <a href="/boardPageList?boardCode=1&pageNumber=1" class="btn btn-primary btn-xs">목록</a>
 					          <c:choose>
 					          	<c:when test="${userVo.userId != null && userVo.userId == postVo.userId}">
-					          		<a href="/postUpdate" class="btn btn-primary pull-right btn-xs">수정</a>
-					          	 	<a href="/postDelete" class="btn btn-primary pull-right btn-xs">삭제</a>
-					          	 	<a href="/postDetail" class="btn btn-primary pull-right btn-xs">답글</a>
+					          		<a href="/postUpdateSend?postCode=${postVo.postCode}" class="btn btn-primary pull-right btn-xs">수정</a>
+					          	 	<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="/postDelete?postCode=${postVo.postCode}&boardCode=${postVo.boardCode}" class="btn btn-primary pull-right btn-xs">삭제</a>
+					          	 	<a href="/postAnswerSend?postRefer=${postVo.postCode}" class="btn btn-primary pull-right btn-xs">답글</a>
 					          	</c:when>
 					          	<c:when test="${userVo.userId != null && userVo.userId != postVo.userId}">
 					          		<a href="/postDetail" class="btn btn-primary pull-right btn-xs">답글</a>

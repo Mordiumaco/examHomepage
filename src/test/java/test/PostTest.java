@@ -68,4 +68,20 @@ public class PostTest {
 		
 		assertEquals(8, postList.size());
 	}
+	
+	/**
+	* Method : postCountTest
+	* 작성자 : pc20
+	* 변경이력 :
+	* Method 설명 : 게시물 수 뽑아오기
+	*/
+	@Test
+	public void postCountTest() {
+		
+		String boardCode = "1";
+		
+		Integer count = postService.countPost(boardCode);
+		
+		assertEquals((Integer)10, count);
+	}
 }

@@ -5,11 +5,29 @@
 <mapper namespace="boardSQL">
 	
   <select id="selectBoardList" resultType="boardVo" parameterType="boardVo" >
- 	 select * from board
+ 	 select * from board where boardavailable = 1
+  </select>
+  
+  <select id="selectBoardListForBoardMaker" resultType="boardVo">
+  	select * from board
   </select>
   
   <select id="getBoardName" resultType="String" parameterType="Integer">
   	select boardName from board where boardCode = #{boardCode}
   </select>
+  
+  <select id="nowBoardCode" resultType="Integer">
+  	select max(boardcode) from board
+  </select>
+  
+  <insert id="insertBoard" parameterType="boardVo">
+  	insert into board(boardcode, userid, boardname, boardDate, boardavailable) 
+  	values(#{boardCode}, #{userId}, #{boardName}, sysdate, 1)
+  </insert>
+  
+  <update id="updateBoard" parameterType="boardVo">
+  	update board set boardname=#{boardName}, boardavailable=#{boardAvailable}
+  	where boardcode=#{boardCode}
+  </update>
   
 </mapper>

@@ -62,6 +62,8 @@ public class PostDao implements IPostDao{
 		SqlSession session = factory.openSession();
 		
 		int result = session.update("postSQL.inquiryUp", postCode);
+		session.commit();
+		session.close();
 		
 		if(result != -1){
 			return result;
@@ -152,5 +154,91 @@ public class PostDao implements IPostDao{
 		return -1;
 	}
 	
+	/**
+	* Method : updatePost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 객체로 수정하기
+	* 
+	*/
+	@Override
+	public int updatePost(PostVO postVo){
+		
+		SqlSessionFactory factory = SQLFactoryBuilder.getSqlSessionFactory();
+		
+		SqlSession session = factory.openSession();
+		
+		try{
+			System.out.println(postVo);
+			int result = session.insert("postSQL.updatePost", postVo);
+			
+			session.commit();
+			session.close();
+			
+			return result;
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
 	
+	/**
+	* Method : deletePost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 코드를 이용해서 postavailable = 2 로 바꾸기
+	* 
+	*/
+	@Override
+	public int deletePost(String postCode){
+		SqlSessionFactory factory = SQLFactoryBuilder.getSqlSessionFactory();
+		
+		SqlSession session = factory.openSession();
+		
+		try{
+			System.out.println(postCode);
+			int result = session.insert("postSQL.deletePost", postCode);
+			
+			session.commit();
+			session.close();
+			
+			return result;
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
+	
+	/**
+	* Method : countPost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 총 현재 게시물 수를 구한다. 
+	*/
+	@Override
+	public Integer countPost(String boardCode){
+
+		SqlSessionFactory factory = SQLFactoryBuilder.getSqlSessionFactory();
+		
+		SqlSession session = factory.openSession();
+		
+		try{
+			
+			Integer count = session.selectOne("postSQL.countPost", boardCode);
+			
+			return count;
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
 }

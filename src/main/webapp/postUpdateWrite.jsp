@@ -36,7 +36,7 @@ $(document).ready(function() {
 
 	// 전송버튼 클릭이벤트
 	$("#savebutton").click(function(){
-		if(confirm("글쓰기를 완료하시겠습니까?")) {
+		if(confirm("수정을 완료하시겠습니까?")) {
 			// id가 smarteditor인 textarea에 에디터에서 대입
 			oEditors.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
 
@@ -70,35 +70,15 @@ function validation(){
 		      <div class="row">
 			        <div class="col-md-12 blog-main">
 			        
-<form action="/postMaker?boardCode=${boardCode}&postRefer=${postRefer}" method="post" id="frm" class="form-horizontal" enctype="multipart/form-data">
+<form action="/postUpdate?boardCode=${postVo.boardCode}&postCode=${postVo.postCode}" method="post" id="frm" class="form-horizontal">
 	<div class="form-group">
 		<div class="col-md-6">
-			 <input type="text" class="form-control" id="userId" name="postName"
+			 <input type="text" class="form-control" id="postName" name="postName" value="${postVo.postName}"
 				placeholder="게시물 제목">
 		</div>
 	</div>
-	<textarea name="postCon" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea>
-	<div class="form-group">
-	    <label for="exampleInputFile">파일 업로드1</label>
-	    <input type="file" id="exampleInputFile" name="filePosition1">
-  	</div>
-  	<div class="form-group">
-	    <label for="exampleInputFile">파일 업로드2</label>
-	    <input type="file" id="exampleInputFile" name="filePosition2">
-  	</div>
-  	<div class="form-group">
-	    <label for="exampleInputFile">파일 업로드3</label>
-	    <input type="file" id="exampleInputFile" name="filePosition3">
-  	</div>
-  	<div class="form-group">
-	    <label for="exampleInputFile">파일 업로드4</label>
-	    <input type="file" id="exampleInputFile" name="filePosition4">
-  	</div>
-  	<div class="form-group">
-	    <label for="exampleInputFile">파일 업로드5</label>
-	    <input type="file" id="exampleInputFile" name="filePosition5">
-  	</div>
-  	<input type="button" class="btn btn-primary" id="savebutton" value="글쓰기" /> 
+	<textarea name="postCon" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;">${postVo.postCon}</textarea>
+	<input type="button" class="btn btn-primary" id="savebutton" value="수정" /> 
 </form>
 
 </div>

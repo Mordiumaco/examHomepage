@@ -19,11 +19,12 @@ import post.service.IPostService;
 import post.service.PostService;
 import post.vo.PostVO;
 
-@WebServlet(urlPatterns={"/postDetail","/postCommentInsert","/postSend"})
+@WebServlet(urlPatterns={"/postDetail","/postCommentInsert","/postSend","/postAnswerSend","/postUpdateSend"})
 public class PostS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		//요청 uri로 로직 분기
 		String uri = request.getRequestURI();
 		System.out.println("userServlet doGet => " +uri);
@@ -39,6 +40,12 @@ public class PostS extends HttpServlet {
 			
 			//post 메서드 방식으로 들어가있으니까 doPost로 전환해준다. 
 			doPost(request, response);
+		}else if(uri.equals("/postAnswerSend")){
+			
+			postAnswerSend(request, response);
+		}else if(uri.equals("/postUpdateSend")){
+			
+			postUpdateSend(request, response);
 		}
 	}
 	
@@ -126,6 +133,7 @@ public class PostS extends HttpServlet {
 			//댓글에 대한 리스트
 			ICommentService commentService = CommentService.getInstance();
 			List<CommentVO> commentList = commentService.selectPostCommentByPostCode(postCode);
+			int result = postSerivce.inquiryUp(postCode);
 			
 			System.out.println(commentList);
 			request.setAttribute("commentList", commentList);
@@ -148,6 +156,35 @@ public class PostS extends HttpServlet {
 		request.setAttribute("postRefer", postRefer);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/postWrite.jsp");
+		rd.forward(request, response);
+	}
+	
+	
+	private void postAnswerSend(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String postRefer = request.getParameter("postRefer");
+		
+		//답글을 달기 위해 board code를 받아오기 
+		IPostService postService = PostService.getInstance();
+		PostVO postVo =  postService.selectPostByPostCode(postRefer);
+		
+		request.setAttribute("boardCode", postVo.getBoardCode());
+		request.setAttribute("postRefer", postRefer);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/postWrite.jsp");
+		rd.forward(request, response);
+	}
+	
+	
+	private void postUpdateSend(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String postCode = request.getParameter("postCode");
+		
+		IPostService postService = PostService.getInstance();
+		PostVO postVo =  postService.selectPostByPostCode(postCode);
+		
+		request.setAttribute("postVo", postVo);
+		request.setAttribute("postCode", postCode);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/postUpdateWrite.jsp");
 		rd.forward(request, response);
 	}
 }

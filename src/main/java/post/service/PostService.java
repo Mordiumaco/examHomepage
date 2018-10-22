@@ -91,9 +91,62 @@ public class PostService implements IPostService{
 	* 
 	*/
 	public int insertPost(PostVO postVo){
-		int postCode = service.nowPostNumber()+1;
-		postVo.setPostCode(postCode);
-		
 		return dao.insertPost(postVo);
 	}
+	
+	/**
+	* Method : updatePost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 객체로 수정하기
+	* 
+	*/
+	@Override
+	public int updatePost(PostVO postVo){
+		return dao.updatePost(postVo);
+	}
+	
+	/**
+	* Method : deletePost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 코드를 이용해서 postavailable = 2 로 바꾸기
+	* 
+	*/
+	@Override
+	public int deletePost(String postCode){
+		return dao.deletePost(postCode);
+	}
+	
+	/**
+	* Method : countPost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 총 현재 게시물 수를 구한다. 
+	*/
+	@Override
+	public Integer countPost(String boardCode){
+		return dao.countPost(boardCode);
+	}
+	
+	
+	/**
+	* Method : totalPageNumber
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 총 현재 페이지의 토탈 페이지를 구한다. 
+	*/
+	@Override
+	public int totalPageNumber(String boardCode){
+		Integer count = countPost(boardCode);
+		
+		int totalPage = count%10==0 ? count/10 : count/10+1;
+				
+		return totalPage;
+	}
+	
 }

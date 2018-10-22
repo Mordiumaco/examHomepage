@@ -47,10 +47,16 @@ public class BoardS extends HttpServlet {
 		IPostService postService = PostService.getInstance();
 		List<PostVO> postList = postService.selectPostByPage(pageNumber, boardCode);
 		
+		//페이지 구하기
+		Integer totalPage = postService.totalPageNumber(boardCode);
+		request.setAttribute("totalPage", totalPage);
+		
 		//게시물 뽑아오기
 		request.setAttribute("postList", postList);
+		request.setAttribute("boardCode", boardCode);
+		request.setAttribute("pageNumber", pageNumber);
 		
-		if(postList.size() == 0){
+		/*if(postList.size() == 0){
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter script = response.getWriter();
 			
@@ -58,10 +64,10 @@ public class BoardS extends HttpServlet {
 			script.println("alert('존재하는 게시물이 없습니다.');");
 			script.println("location.href = 'main.jsp';");
 			script.println("</script>");
-		}
+		}*/
 		
 		IBoardService boardService = BoardService.getInstance();
-		String boardName = boardService.getBoardName(Integer.parseInt(postList.get(0).getBoardCode()));
+		String boardName = boardService.getBoardName(Integer.parseInt(boardCode));
 		
 		//게시판 이름 받아오기
 		request.setAttribute("boardName", boardName);

@@ -59,4 +59,33 @@ public interface IPostDao {
 	*/
 	public int insertPost(PostVO postVo);
 	
+	/**
+	* Method : updatePost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 객체로 수정하기
+	* 
+	*/
+	public int updatePost(PostVO postVo);
+	
+	/**
+	* Method : deletePost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 포스트 코드를 이용해서 postavailable = 2 로 바꾸기
+	* 
+	*/
+	public int deletePost(String postCode);
+	
+	
+	/**
+	* Method : countPost
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 : 총 현재 게시물 수를 구한다. 
+	*/
+	public Integer countPost(String boardCode);
 }

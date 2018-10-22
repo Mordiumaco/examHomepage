@@ -7,6 +7,7 @@ public class BoardVO {
 	private String boardName;
 	private String boardDate;
 	private Integer boardAvailable;
+	
 	public Integer getBoardCode() {
 		return boardCode;
 	}

@@ -30,9 +30,20 @@
   	select * from post where postCode = #{postCode}
   </select>
   
+  <select id="countPost" resultType="Integer" parameterType="String">
+  	select count(postcode) from post where postavailable = 1 and boardcode = #{boardCode}
+  </select>
+  
   <insert id="insertPost" parameterType="postVo">
   	insert into post (postcode, userid, postname, postcon, postdate, postinquiry, boardcode, postrefer, postavailable)
   	values(#{postCode},#{userId},#{postName},#{postCon},sysdate,0,#{boardCode},#{postRefer},1)
   </insert>
   
+  <update id="updatePost" parameterType="postVo">
+  	update post set postname=#{postName}, postcon=#{postCon} where postCode = #{postCode}
+  </update>
+  
+  <update id="deletePost" parameterType="String">
+  	update post set postavailable = 2 where postCode = #{postCode}
+  </update>
 </mapper>

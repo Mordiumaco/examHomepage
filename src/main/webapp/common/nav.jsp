@@ -36,7 +36,7 @@
 					<c:otherwise></c:otherwise>
 				</c:choose>
 				<c:if test="${userVo.right == 3}">
-					<li><a href="boardMaker.jsp">진짜 게시판 생성</a></li>
+					<li><a href="/boardMakerSend">진짜 게시판 생성</a></li>
 				</c:if>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

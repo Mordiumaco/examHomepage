@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fileSQL">
+	
+ <select id="nowFileCodeNumber" resultType="Integer">
+ 	 select nvl(max(filecode),0) from postfile
+  </select>
+  
+  <insert id="insertFile" parameterType="fileVo">
+  	insert into postfile (filecode, filename, fileposition, postcode, fileavailable)
+  	values(#{fileCode}, #{fileName}, #{fileName}, #{postCode}, 1)
+  </insert>
+  
+  <select id="selectFilebyPostCode" parameterType="String">
+  	select * form postfile where postcode = #{postCode}
+  </select> 
+  
+</mapper>

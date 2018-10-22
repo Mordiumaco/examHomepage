@@ -45,6 +45,29 @@ public class BoardDao implements IBoardDao{
 	}
 	
 	/**
+	* Method : selectBoardListForBoardMaker
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return List<BoardVO> list 반환
+	* Method 설명 : 현재 가지고 있는 게시판들을 불러온다
+	*/
+	@Override
+	public List<BoardVO> selectBoardListForBoardMaker(){
+
+		SqlSessionFactory factory = SQLFactoryBuilder.getSqlSessionFactory();
+		
+		SqlSession session = factory.openSession();
+		
+		List<BoardVO> boardList = session.selectList("boardSQL.selectBoardListForBoardMaker");
+		
+		if(boardList != null){
+			return boardList;
+		}
+		
+		return null;
+	}
+	
+	/**
 	* Method : getBoardName
 	* 작성자 : pc20
 	* 변경이력 :
@@ -68,4 +91,87 @@ public class BoardDao implements IBoardDao{
 		return null;
 	}
 	
+	
+	/**
+	* Method : nowBoardCode
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 :현재 최근 boardcode를 얻어온다.
+	*/
+	@Override
+	public Integer nowBoardCode(){
+		SqlSessionFactory factory = SQLFactoryBuilder.getSqlSessionFactory();
+		
+		SqlSession session = factory.openSession();
+		
+		try {
+			Integer nowBoardCode = session.selectOne("boardSQL.nowBoardCode");
+			
+			return nowBoardCode;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
+	
+	/**
+	* Method : insertBoard
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 :게시판을 만든다.
+	*/
+	@Override
+	public int insertBoard(BoardVO boardVo){
+		
+		SqlSessionFactory factory = SQLFactoryBuilder.getSqlSessionFactory();
+		
+		SqlSession session = factory.openSession();
+		
+		try {
+			
+			int result = session.insert("boardSQL.insertBoard", boardVo);
+			session.commit();
+			session.close();
+			
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
+	
+	/**
+	* Method : updateBoard
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return
+	* Method 설명 :게시판을 수정한다.
+	*/
+	@Override
+	public int updateBoard(BoardVO boardVo){
+		
+		SqlSessionFactory factory = SQLFactoryBuilder.getSqlSessionFactory();
+
+		SqlSession session = factory.openSession();
+
+		try {
+
+			int result = session.update("boardSQL.updateBoard", boardVo);
+			session.commit();
+			session.close();
+			
+			return result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
 }

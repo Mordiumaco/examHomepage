@@ -9,6 +9,7 @@
  	<typeAlias type="login.vo.UserVO" alias="userVo"/>
  	<typeAlias type="board.vo.BoardVO" alias="boardVo"/>
  	<typeAlias type="post.vo.PostVO" alias="postVo"/>
+ 	<typeAlias type="file.vo.FileVO" alias="fileVo"/>
  	<typeAlias type="comment.vo.CommentVO" alias="commentVo"/>
  </typeAliases>	
 	
@@ -36,5 +37,6 @@
   	<mapper resource="kr/or/ddit/db/board.xml"/>
   	<mapper resource="kr/or/ddit/db/post.xml"/>
   	<mapper resource="kr/or/ddit/db/comment.xml"/>
+  	<mapper resource="kr/or/ddit/db/file.xml"/>
   </mappers>
 </configuration>
