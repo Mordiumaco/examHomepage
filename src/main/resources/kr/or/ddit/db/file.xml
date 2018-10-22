@@ -13,8 +13,8 @@
   	values(#{fileCode}, #{fileName}, #{fileName}, #{postCode}, 1)
   </insert>
   
-  <select id="selectFilebyPostCode" parameterType="String">
-  	select * form postfile where postcode = #{postCode}
+  <select id="selectFilebyPostCode" resultType="fileVo" parameterType="String">
+  	select * from postfile where postcode = #{postCode}
   </select> 
   
 </mapper>

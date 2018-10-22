@@ -94,7 +94,7 @@ public class FileDao implements IFileDao{
 		
 		try {
 			
-			List<FileVO> fileList = session.selectList("fileSQL.nowFileCodeNumber", postCode);
+			List<FileVO> fileList = session.selectList("fileSQL.selectFilebyPostCode", postCode);
 			
 			return fileList;
 			

@@ -19,7 +19,7 @@ public class FileS extends HttpServlet {
 		
 		String fileName = request.getParameter("file");
 		
-		String directory = this.getServletContext().getRealPath("/upload");
+		String directory = this.getServletContext().getRealPath("/upload/");
 		File file = new File(directory+"/"+fileName);
 		
 		String mimeType = getServletContext().getMimeType(file.toString());
@@ -36,7 +36,7 @@ public class FileS extends HttpServlet {
 			downloadName = new String(fileName.getBytes("EUC-KR"), "8859_1");
 		}
 		
-		response.setHeader("Content-Dispostion", "attachment;fileName=\""+downloadName+"\";");
+		response.setHeader("Content-Disposition", "attachment;fileName=\""+downloadName+"\";");
 		
 		FileInputStream fileInputStream = new FileInputStream(file);
 		ServletOutputStream servletOutputStream = response.getOutputStream();

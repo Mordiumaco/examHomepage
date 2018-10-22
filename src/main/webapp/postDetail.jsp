@@ -23,11 +23,17 @@
 				            <p>${postVo.postCon}</p>
 				            <hr>
 				            <blockquote>
-				              <p style="font-size: 13px">첨부파일 예정</p>
-				              <p style="font-size: 13px">첨부파일 예정</p>
-				              <p style="font-size: 13px">첨부파일 예정</p>
-				              <p style="font-size: 13px">첨부파일 예정</p>
-				              <p style="font-size: 13px">첨부파일 예정</p>
+				            	<c:choose>
+				            		<c:when test="${fn:length(fileList) == 0}">
+				            			해당 게시물은 파일이 없습니다.
+				            		</c:when>
+				            		<c:when test="${fileList != null}">
+				            			<c:forEach items="${fileList}" var="file">
+				            				<p><a href="/fileS?file=${file.fileName}" >${file.fileName}<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></a><p>
+				            			</c:forEach>
+				            		</c:when>
+				            		<c:otherwise></c:otherwise>
+				            	</c:choose>
 				            </blockquote>
 				          </div><!-- /.blog-post -->
 				          <hr>

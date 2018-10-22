@@ -15,6 +15,10 @@ import login.vo.UserVO;
 import comment.service.CommentService;
 import comment.service.ICommentService;
 import comment.vo.CommentVO;
+import file.dao.IFileDao;
+import file.service.FileService;
+import file.service.IFileService;
+import file.vo.FileVO;
 import post.service.IPostService;
 import post.service.PostService;
 import post.vo.PostVO;
@@ -137,6 +141,12 @@ public class PostS extends HttpServlet {
 			
 			System.out.println(commentList);
 			request.setAttribute("commentList", commentList);
+			
+			IFileService fileService = FileService.getInstance();
+			List<FileVO> fileList =  fileService.selectFilebyPostCode(postCode);
+			System.out.println("fileList = "+fileList);
+			request.setAttribute("fileList", fileList);
+			
 			
 			//포스트 자체 정보에 대한 postVo
 			request.setAttribute("postVo", postVo);

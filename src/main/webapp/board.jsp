@@ -111,7 +111,10 @@
 				    	</c:when>
 				    </c:choose>
 				    <c:forEach begin="1" end="${totalPage}" var="i">
-						<li><a href="/boardPageList?boardCode=${boardCode}&pageNumber=${i}">${i}</a></li>
+						<c:choose>
+							<c:when test="${i == PageNumber}"><li><a class="active" href="/boardPageList?boardCode=${boardCode}&pageNumber=${i}">${i}</a></li></c:when>
+							<c:otherwise><li><a href="/boardPageList?boardCode=${boardCode}&pageNumber=${i}">${i}</a></li></c:otherwise>
+						</c:choose>
 					</c:forEach>
 					<c:choose>
 				    	<c:when test="${pageNumber == totalPage}">
