@@ -42,7 +42,7 @@ public class LoginDao implements ILoginDao{
 		SqlSession session = factory.openSession();
 		
 		UserVO user = session.selectOne("userSQL.selectUserByIdAndPassword", userVo);
-		
+		session.close();
 		if(user != null){
 			return user;
 		}

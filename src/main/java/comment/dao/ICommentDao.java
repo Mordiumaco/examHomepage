@@ -33,4 +33,12 @@ public interface ICommentDao {
 	*/
 	public Integer nowPostCommentNumber();
 	
+	/**
+	* Method : deletePostComment
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return int 반환
+	* Method 설명 : 현재 CommentCode의 available을 2로 바꿔준다. 
+	*/
+	public int deletePostComment(String CommentCode);
 }

@@ -38,7 +38,7 @@ public class PostDao implements IPostDao{
 		SqlSession session = factory.openSession();
 		
 		Integer nowPostCode = session.selectOne("postSQL.nowPostNumber");
-		
+		session.close();
 		if(nowPostCode != null){
 			return nowPostCode;
 		}
@@ -87,7 +87,7 @@ public class PostDao implements IPostDao{
 		SqlSession session = factory.openSession();
 		
 		List<PostVO> postList = session.selectList("postSQL.selectPostByPage", pageVo);
-		
+		session.close();
 		if(postList != null){
 			return postList;
 		}
@@ -112,7 +112,7 @@ public class PostDao implements IPostDao{
 		
 		try{
 			PostVO postVo= session.selectOne("postSQL.selectPostByPostCode", postCode);
-			
+			session.close();
 			return postVo;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -232,7 +232,7 @@ public class PostDao implements IPostDao{
 		try{
 			
 			Integer count = session.selectOne("postSQL.countPost", boardCode);
-			
+			session.close();
 			return count;
 			
 		}catch(Exception e){

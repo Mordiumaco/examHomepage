@@ -25,4 +25,8 @@
   	insert into postcomment (commentcode, userid, commentcon ,commentdate, postcode, commentrefer, commentavailable) 
   	values (#{commentCode}, #{userId}, #{commentCon}, sysdate, #{postCode}, null, 1)
   </insert>
+  
+  <update id="deletePostComment" parameterType="String">
+  	update postcomment set commentavailable = 2 where commentcode = #{commentCode}
+  </update>
 </mapper>

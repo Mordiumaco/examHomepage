@@ -37,6 +37,8 @@ public class BoardDao implements IBoardDao{
 		
 		List<BoardVO> boardList = session.selectList("boardSQL.selectBoardList");
 		
+		session.close();
+		
 		if(boardList != null){
 			return boardList;
 		}
@@ -60,6 +62,7 @@ public class BoardDao implements IBoardDao{
 		
 		List<BoardVO> boardList = session.selectList("boardSQL.selectBoardListForBoardMaker");
 		
+		session.close();
 		if(boardList != null){
 			return boardList;
 		}
@@ -84,6 +87,7 @@ public class BoardDao implements IBoardDao{
 		
 		String boardName = session.selectOne("boardSQL.getBoardName", boardCode);
 		
+		session.close();
 		if(boardName != null){
 			return boardName;
 		}
@@ -105,9 +109,10 @@ public class BoardDao implements IBoardDao{
 		
 		SqlSession session = factory.openSession();
 		
+		
 		try {
 			Integer nowBoardCode = session.selectOne("boardSQL.nowBoardCode");
-			
+			session.close();
 			return nowBoardCode;
 			
 		} catch (Exception e) {

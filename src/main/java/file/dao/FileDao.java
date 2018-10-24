@@ -39,7 +39,7 @@ public class FileDao implements IFileDao{
 		
 		try {
 			Integer nowFileCode = session.selectOne("fileSQL.nowFileCodeNumber");
-			
+			session.close();
 			return nowFileCode;
 			
 		} catch (Exception e) {
@@ -95,7 +95,7 @@ public class FileDao implements IFileDao{
 		try {
 			
 			List<FileVO> fileList = session.selectList("fileSQL.selectFilebyPostCode", postCode);
-			
+			session.close();
 			return fileList;
 			
 		} catch (Exception e) {

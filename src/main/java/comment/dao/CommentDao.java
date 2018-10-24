@@ -39,7 +39,7 @@ public class CommentDao implements ICommentDao{
 		try {
 			
 			List<CommentVO> commentList = session.selectList("commentSQL.selectPostCommentByPostCode", postCode);
-			
+			session.close();
 			if(commentList != null){
 				return commentList;
 			}
@@ -92,7 +92,7 @@ public class CommentDao implements ICommentDao{
 		try {
 
 			int result = session.selectOne("commentSQL.nowPostCommentNumber");
-
+			session.close();
 			return result;
 
 		} catch (Exception e) {
@@ -101,4 +101,33 @@ public class CommentDao implements ICommentDao{
 		
 		return -1;
 	}
+	
+	/**
+	* Method : deletePostComment
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return int 반환
+	* Method 설명 : 현재 CommentCode의 available을 2로 바꿔준다. 
+	*/
+	public int deletePostComment(String CommentCode){
+		
+		SqlSessionFactory factory = SQLFactoryBuilder.getSqlSessionFactory();
+
+		SqlSession session = factory.openSession();
+		
+		try {
+
+			int result = session.update("commentSQL.deletePostComment", CommentCode);
+			session.commit();
+			session.close();
+			
+			return result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
+	
 }

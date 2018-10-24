@@ -79,6 +79,9 @@
 				 	 			<div class="commentCon">
 					 	 			<fmt:parseDate var="commentDate" value="${commentVo.commentDate}" pattern="yyyy-MM-dd"/> 
 							 		<p style="text-align:left; color:#848484;">${commentVo.userId}- - - <fmt:formatDate value="${commentDate}" pattern="yyyy.MM.dd"/></p>
+							 		<c:if test="${userVo.userId == commentVo.userId}">
+							 			<a class="btn btn-primary pull-right btn-xs" href="/commentS?commentCode=${commentVo.commentCode}">삭제</a>
+							 		</c:if>
 						         	 <hr>
 						             <div><p>${commentVo.title}</p></div>
 						         </div>

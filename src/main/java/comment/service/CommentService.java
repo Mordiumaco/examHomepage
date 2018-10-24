@@ -64,5 +64,15 @@ public class CommentService implements ICommentService{
 		return dao.insertPostComment(commentVo);
 	}
 	
-
+	/**
+	* Method : deletePostComment
+	* 작성자 : pc20
+	* 변경이력 :
+	* @return int 반환
+	* Method 설명 : 현재 CommentCode의 available을 2로 바꿔준다. 
+	*/
+	@Override
+	public int deletePostComment(String CommentCode){
+		return dao.deletePostComment(CommentCode);
+	}
 }

@@ -25,6 +25,7 @@ public class BoardMaker extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//요청 uri로 로직 분기
+		request.setCharacterEncoding("UTF-8");
 		String uri = request.getRequestURI();
 		System.out.println("userServlet doGet => " +uri);
 

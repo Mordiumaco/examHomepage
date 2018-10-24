@@ -24,10 +24,23 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+           <c:choose>
+				<c:when test="${boardList!=null}">
+					<c:forEach items="${boardList}" var="board">
+						<c:choose>
+							<c:when test="${userVo.right == 1}">
+								<li><a href="boardPageList?boardCode=${board.boardCode}&pageNumber=1">${board.boardName}</a></li>
+							</c:when>
+							<c:when test="${userVo.right == 3}">
+								<li><a href="boardPageList?boardCode=${board.boardCode}&pageNumber=1">${board.boardName}</a></li>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</c:when>
+				<c:otherwise></c:otherwise>
+			</c:choose>
           </ul>
         </div>
 
