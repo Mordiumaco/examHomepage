@@ -135,7 +135,7 @@ public class PostMaker extends HttpServlet {
 			while(fileNames.hasMoreElements()){
 				String parameter = (String)fileNames.nextElement();
 				//파일명
-				String fileName = multipartRequest.getOriginalFileName(parameter);
+				String fileName = multipartRequest.getFilesystemName(parameter);
 				System.out.println("file name-"+fileName);
 				//실제 파일명
 				String fileRealName = multipartRequest.getFilesystemName(parameter);
